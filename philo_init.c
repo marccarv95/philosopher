@@ -6,12 +6,12 @@
 /*   By: marccarv <marccarv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:49:31 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/07 13:03:08 by marccarv         ###   ########.fr       */
+/*   Updated: 2024/10/11 18:25:08 by marccarv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
+/*
 t_point	*table_malloc(size_t nbr_philo)
 {
 	t_point	*table;
@@ -35,14 +35,14 @@ pthread_mutex_t	*forks_malloc(size_t nbr_philo)
 		return (NULL);
 	return (forks);
 }
-
+*/
 pthread_t	*philo_malloc(size_t nbr_philo)
 {
 	pthread_t	*philo;
 
 	if (nbr_philo == 0)
 		return (NULL);
-	philo = (pthread_t *) malloc(sizeof(pthread_t) * nbr_philo);
+	philo = (pthread_t *) malloc(sizeof(pthread_t)); // * nbr_philo); --Alterado criar 1
 	if (!philo)
 		return (NULL);
 	return (philo);
@@ -51,8 +51,8 @@ pthread_t	*philo_malloc(size_t nbr_philo)
 void	init_valuer(t_point **table, \
 	pthread_mutex_t **forks, pthread_t **philo, size_t nbr_philo)
 {
-	*table = table_malloc(nbr_philo);
-	*forks = forks_malloc(nbr_philo);
+	//*table = table_malloc(nbr_philo);
+	//*forks = forks_malloc(nbr_philo);
 	*philo = philo_malloc(nbr_philo);
 }
 
@@ -63,15 +63,15 @@ void	init_control(t_valuer *control, int ac, char **av)
 	size_t	argv3;
 	size_t	argv4;
 
-	control->mutex = malloc(sizeof(pthread_mutex_t));
-	if (!control->mutex)
-		return ;
-	pthread_mutex_init(control->mutex, NULL);
+	//control->mutex = malloc(sizeof(pthread_mutex_t));
+	//if (!control->mutex)
+	//	return ;
+	//pthread_mutex_init(control->mutex, NULL);
 	argv1 = ft_atol(av[1]);
 	argv2 = ft_atol(av[2]);
 	argv3 = ft_atol(av[3]);
 	argv4 = ft_atol(av[4]);
-	sem_init(&control->sem, 1, argv1);
+	//sem_init(&control->sem, 1, argv1);
 	control->ac = ac;
 	control->av1 = argv1;
 	control->av2 = argv2;

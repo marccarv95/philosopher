@@ -6,7 +6,7 @@
 /*   By: marccarv <marccarv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:31:17 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/07 13:03:11 by marccarv         ###   ########.fr       */
+/*   Updated: 2024/10/11 20:23:52 by marccarv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,11 @@ static	int	rotine_cont(t_point *table)
 	return (0);
 }
 
-void	*table_rotina_par(void *arg)
+void	*table_rotina_par(t_point *table)
 {
-	t_point	*table;
+	pthread_t		munitor;
 
-	table = (t_point *)arg;
+	pthread_create(&munitor, NULL, monitoring, table);
 	while (1)
 	{
 		print_philo_stat("is thinking", table);
