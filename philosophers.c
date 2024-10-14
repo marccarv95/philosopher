@@ -6,7 +6,7 @@
 /*   By: marccarv <marccarv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:14:44 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/14 18:03:02 by marccarv         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:51:28 by marccarv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,34 +35,39 @@ int	main(int ac, char **av)
 	//loop_mutex_destroy(forks, ft_atol(av[1]));
 	//pthread_mutex_destroy(control.mutex);
 	//free(control.mutex);
+	int exit_code;
 	while (1)
 	{
 		waitpid(-1, &status, 0);
-		if (WIFEXITED(status))
+		exit_code = WEXITSTATUS(status);
+		printf("Pai: O processo filho terminou com código de saída: %d\n", exit_code);
+		if (exit_code == 1)
 		{
-			int exit_code = WEXITSTATUS(status);
-			if (exit_code == 1)
+			while (i < control.av1)
 			{
-				while (i < control.av1)
-				{
-					printf("Enviando SIGKILL para o processo filho com PID: %d\n", table->kill_pid[i]);
-					kill(table->kill_pid[i], SIGKILL);
-				}
+				printf("Enviando SIGKILL para o processo filho com PID: %d\n", table->kill_pid[i]);
+				kill(table->kill_pid[i], SIGKILL);
+				i++;
+			}
+			sem_close(table->sem_ph);
+			sem_close(table->sem_print);
+    		sem_unlink("/philo_semaphore");
+			sem_unlink("/philo_print");
+			exit (0);
+		}
+		else if (exit_code == 0)
+		{
+			j++;
+			if (j == control.av1)
+			{
+				printf("Pai: Todos os filhos terminaram de comer\n");
 				sem_close(table->sem_ph);
+				sem_close(table->sem_print);
     			sem_unlink("/philo_semaphore");
+				sem_unlink("/philo_print");
+				exit(0);
 			}
-			else if (exit_code == 0)
-			{
-				j++;
-				if (j == control.av1)
-				{
-					printf("Pai: Todos os filhos terminaram de comer\n");
-					sem_close(table->sem_ph);
-    				sem_unlink("/philo_semaphore");
-					break ;
-				}
-			}
-        }
+		}
     }
 	free(table->kill_pid);
 	free(table);

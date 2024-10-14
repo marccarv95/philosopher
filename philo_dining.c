@@ -6,13 +6,13 @@
 /*   By: marccarv <marccarv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:31:17 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/14 18:05:09 by marccarv         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:47:12 by marccarv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static	void	rotine(t_point *table)
+static	int	rotine(t_point *table, int i)
 {
 	sem_wait(table->sem_ph);
 	if (table->val.x == 1)
@@ -26,7 +26,12 @@ static	void	rotine(t_point *table)
 		if (philo_one(table) == 1)
 			exit (1);
 	}
-	sem_wait(table->sem_ph);
+	if(sem_wait(table->sem_ph) != 0)
+	{
+		sem_post(table->sem_ph);
+		i ++;
+		return (1);
+	}
 	if (table->val.x == 1)
 	{
 		sem_post(table->sem_ph);
@@ -34,6 +39,7 @@ static	void	rotine(t_point *table)
 		exit (1);
 	}
 	print_philo_stat("has taken a fork", table);
+	return (0);
 }
 /*
 static	int	rotine_fork_two(t_point *table)
@@ -56,6 +62,7 @@ static	void	rotine_cont(t_point *table)
 	{
 		sem_post(table->sem_ph);
 		sem_post(table->sem_ph);
+		usleep(1000);
 		exit (1);
 	}
 	sem_post(table->sem_ph);
@@ -65,10 +72,13 @@ static	void	rotine_cont(t_point *table)
 	if (table->food == 0)
 	{
 		usleep(4000);
-		exit (1);
+		exit (0);
 	}
 	if (table->val.x == 1)
+	{
+		usleep(1000);
 		exit (1);
+	}
 	print_philo_stat("is sleeping", table);
 	ft_sleep(table->t_to_sleep);
 	if (table->val.x == 1)
@@ -78,16 +88,17 @@ static	void	rotine_cont(t_point *table)
 void	table_rotina_par(t_point *table)
 {
 	pthread_t		munitor;
+	int				i = 0;
 
 	pthread_create(&munitor, NULL, monitoring, table);
 	pthread_detach(munitor);
 	while (1)
 	{
 		print_philo_stat("is thinking", table);
-		rotine(table);
-//		if (rotine_fork_two(table) == 1)
-//			return (NULL);
-		rotine_cont(table);
+		rotine(table, i);
+		if (i == 0)
+			rotine_cont(table);
+		i = 0;
 		if (table->val.x == 1)
 			exit (1);
 	}
