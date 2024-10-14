@@ -6,12 +6,12 @@
 /*   By: marccarv <marccarv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:49:31 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/11 18:25:08 by marccarv         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:02:49 by marccarv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-/*
+
 t_point	*table_malloc(size_t nbr_philo)
 {
 	t_point	*table;
@@ -23,7 +23,7 @@ t_point	*table_malloc(size_t nbr_philo)
 		return (NULL);
 	return (table);
 }
-
+/*
 pthread_mutex_t	*forks_malloc(size_t nbr_philo)
 {
 	pthread_mutex_t	*forks;
@@ -35,7 +35,7 @@ pthread_mutex_t	*forks_malloc(size_t nbr_philo)
 		return (NULL);
 	return (forks);
 }
-*/
+*//*
 pthread_t	*philo_malloc(size_t nbr_philo)
 {
 	pthread_t	*philo;
@@ -47,16 +47,15 @@ pthread_t	*philo_malloc(size_t nbr_philo)
 		return (NULL);
 	return (philo);
 }
-
-void	init_valuer(t_point **table, \
-	pthread_mutex_t **forks, pthread_t **philo, size_t nbr_philo)
+*/
+void	init_valuer(t_point **table, size_t nbr_philo)
 {
-	//*table = table_malloc(nbr_philo);
+	*table = table_malloc(nbr_philo);
 	//*forks = forks_malloc(nbr_philo);
-	*philo = philo_malloc(nbr_philo);
+	//*philo = philo_malloc(nbr_philo);
 }
 
-void	init_control(t_valuer *control, int ac, char **av)
+void	init_control(t_valuer *control, int ac, char **av, t_point *table)
 {
 	size_t	argv1;
 	size_t	argv2;
@@ -71,12 +70,16 @@ void	init_control(t_valuer *control, int ac, char **av)
 	argv2 = ft_atol(av[2]);
 	argv3 = ft_atol(av[3]);
 	argv4 = ft_atol(av[4]);
-	//sem_init(&control->sem, 1, argv1);
 	control->ac = ac;
 	control->av1 = argv1;
 	control->av2 = argv2;
 	control->av3 = argv3;
 	control->av4 = argv4;
+	table->kill_pid = malloc(sizeof(pid_t) * argv1);
+	if (!table->kill_pid)
+		return;
+	table->sem_ph = sem_open("/philo_semaphore", O_CREAT | O_EXCL, 0644, control->av1);
+	table->sem_print = sem_open("/philo_print", O_CREAT | O_EXCL, 0644, 1);
 	if (ac == 6)
 		control->av5 = ft_atol(av[5]);
 	else

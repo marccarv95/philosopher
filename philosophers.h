@@ -6,7 +6,7 @@
 /*   By: marccarv <marccarv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:15:05 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/11 18:25:10 by marccarv         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:02:19 by marccarv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 # include <limits.h>
 # include <semaphore.h>
 # include <sys/types.h>
+# include <fcntl.h>
+# include <signal.h>
+# include <sys/wait.h>
+//# include <stdatomic.h>
 
 # define BOLD "\033[1m"
 # define RED "\033[31m"
@@ -31,7 +35,6 @@
 typedef struct s_valuer
 {
 	//pthread_mutex_t	*mutex;
-	sem_t			sem;
 	_Atomic int		x;
 	size_t			av1;
 	size_t			av2;
@@ -43,10 +46,11 @@ typedef struct s_valuer
 
 typedef struct s_point
 {
+	sem_t			*sem_ph;
+	sem_t			*sem_print;
 	t_valuer		val;
-	//pthread_mutex_t	*right_fork;
-	//pthread_mutex_t	*left_fork;
 	pid_t			pid;
+	pid_t			*kill_pid;
 	_Atomic size_t	time_ut_r;
 	_Atomic int		food;
 	size_t			time_init;
@@ -64,17 +68,13 @@ pthread_t		*philo_malloc(size_t nbr_philo);
 
 void			print_philo_stat(char *str, t_point *table);
 void			error_exit(const char *str);
-void			init_valuer(t_point **table, \
-pthread_mutex_t **forks, pthread_t **philo, size_t nbr_philo);
-void			loop_forks(pthread_mutex_t *forks, size_t nbr_philo);
-void			loop_philo(pthread_t *philo, t_point *table, \
-pthread_mutex_t *forks, t_valuer control);
-void			loop_join(pthread_t *philo, size_t nbr_philo);
-void			loop_mutex_destroy(pthread_mutex_t *forks, size_t nbr_philo);
-void			init_control(t_valuer *control, int ac, char **av);
+void			init_valuer(t_point **table, size_t nbr_philo);
+void			loop_philo(t_point *table, t_valuer control);
+//void			loop_join(pthread_t *philo, size_t nbr_philo);
+//void			loop_mutex_destroy(pthread_mutex_t *forks, size_t nbr_philo);
+void			init_control(t_valuer *control, int ac, char **av, t_point *table);
 void			ft_sleep(size_t time);
-void			*table_rotina_impar(void *arg);
-void			*table_rotina_par(void *arg);
+void			table_rotina_par(t_point *table);
 void			*monitoring(void *arg);
 
 size_t			check_time(size_t time_init);

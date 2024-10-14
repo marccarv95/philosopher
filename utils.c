@@ -6,7 +6,7 @@
 /*   By: marccarv <marccarv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:49:42 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/07 13:03:44 by marccarv         ###   ########.fr       */
+/*   Updated: 2024/10/14 18:01:15 by marccarv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ size_t	ft_atol(char *str)
 
 void	print_philo_stat(char *str, t_point *table)
 {
-	pthread_mutex_lock(table->val.mutex);
+	sem_wait(table->sem_print);
 	printf("%ld %ld %s\n", get_time_in_ms() - table->time_init, \
 	table->pid_philo, str);
-	pthread_mutex_unlock(table->val.mutex);
+	sem_post(table->sem_print);
 }
