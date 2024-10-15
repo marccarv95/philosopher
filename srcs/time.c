@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marccarv <marccarv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 20:36:37 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/07 13:03:40 by marccarv         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:16:51 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
 size_t	check_time(size_t time_init)
 {

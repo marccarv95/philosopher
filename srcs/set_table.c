@@ -6,11 +6,11 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:52:46 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 15:59:19 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:16:47 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
 void	loop_philo_one(t_point *table, t_valuer control, int i)
 {

@@ -6,11 +6,11 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:49:31 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 16:09:57 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:16:33 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
 void	init_control(t_valuer *control, int ac, char **av, t_point *table)
 {

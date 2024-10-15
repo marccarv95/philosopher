@@ -6,11 +6,11 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:31:17 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 16:05:15 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:16:28 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
 static	void	rotine(t_point *table)
 {

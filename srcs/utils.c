@@ -6,11 +6,11 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:49:42 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 15:56:52 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:20:17 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
 void	error_exit(const char *str)
 {

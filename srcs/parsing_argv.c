@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_argv.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marccarv <marccarv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:35:14 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/07 13:02:57 by marccarv         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:16:21 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
 static	int	valid_caracter(char c)
 {

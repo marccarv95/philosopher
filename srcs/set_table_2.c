@@ -6,11 +6,11 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 18:02:43 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 15:59:45 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:16:44 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
 void	checker_one(t_point *table)
 {

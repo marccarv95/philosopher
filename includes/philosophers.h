@@ -6,7 +6,7 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:15:05 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 16:10:51 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:17:31 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@
 # include <fcntl.h>
 # include <signal.h>
 # include <sys/wait.h>
-//# include <stdatomic.h>
 
 # define BOLD "\033[1m"
 # define RED "\033[31m"

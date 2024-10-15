@@ -6,11 +6,11 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:58:42 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 15:59:32 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:22:40 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
 static	int	monitoring_one(t_point *table)
 {

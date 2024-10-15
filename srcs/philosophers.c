@@ -6,11 +6,11 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:14:44 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 15:58:30 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:22:33 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "../includes/philosophers.h"
 
 static void	end_process(t_point *table, t_valuer control)
 {
