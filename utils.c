@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marccarv <marccarv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:49:42 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/14 19:41:14 by marccarv         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:05:47 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ size_t	ft_atol(char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 		r = r * 10 + (str[i++] - '0');
 	return (r);
+}
+void	print_philo_stat_m(char *str, t_point *table)
+{
+	sem_wait(table->sem_print);
+	printf("%ld %ld %s\n", get_time_in_ms() - table->time_init, \
+	table->pid_philo, str);
 }
 
 void	print_philo_stat(char *str, t_point *table)

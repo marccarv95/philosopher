@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_dining.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marccarv <marccarv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:31:17 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/14 19:47:12 by marccarv         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:09:24 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,6 @@ static	int	rotine(t_point *table, int i)
 	print_philo_stat("has taken a fork", table);
 	return (0);
 }
-/*
-static	int	rotine_fork_two(t_point *table)
-{
-	if (table->val.x == 1)
-	{
-		pthread_mutex_unlock(table->right_fork);
-		pthread_mutex_unlock(table->left_fork);
-		return (1);
-	}
-	return (0);
-}*/
 
 static	void	rotine_cont(t_point *table)
 {
@@ -62,7 +51,6 @@ static	void	rotine_cont(t_point *table)
 	{
 		sem_post(table->sem_ph);
 		sem_post(table->sem_ph);
-		usleep(1000);
 		exit (1);
 	}
 	sem_post(table->sem_ph);

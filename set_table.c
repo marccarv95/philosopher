@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_table.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marccarv <marccarv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:52:46 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/14 17:25:20 by marccarv         ###   ########.fr       */
+/*   Updated: 2024/10/15 12:44:49 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,9 @@ void	loop_philo(t_point *table, t_valuer control)
 	{
 		table->val = control;
 		table->pid_philo = i + 1;
-		//table.n_philo = nbr_philo;
 		table->t_to_die = control.av2;
 		table->t_to_eat = control.av3;
 		table->t_to_sleep = control.av4;
-		//table[i].left_fork = &forks[i];
-		//table[i].right_fork = &forks[(i + 1) % nbr_philo];
 		table->time_init = tempo;
 		table->time_ut_r = get_time_in_ms();
 		loop_philo_one(table, control, i);
