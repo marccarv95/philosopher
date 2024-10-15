@@ -6,7 +6,7 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:15:05 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 14:26:29 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:10:51 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef struct s_valuer
 	size_t			av3;
 	size_t			av4;
 	size_t			av5;
-	int				ac;
 }	t_valuer;
 
 typedef struct s_point
@@ -70,10 +69,14 @@ void			print_philo_stat(char *str, t_point *table);
 void			print_philo_stat_m(char *str, t_point *table);
 void			error_exit(const char *str);
 void			loop_philo(t_point *table, t_valuer control);
-void			init_control(t_valuer *control, int ac, char **av, t_point *table);
+void			init_control(t_valuer *control, \
+				int ac, char **av, t_point *table);
 void			ft_sleep(size_t time);
 void			table_rotina_par(t_point *table);
 void			*monitoring(void *arg);
+void			checker_one(t_point *table);
+void			checker_two(t_point *table);
+void			checker_three(t_point *table, int n);
 
 size_t			check_time(size_t time_init);
 size_t			check_int_max(size_t nbr);

@@ -6,7 +6,7 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:58:42 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 15:00:45 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:59:32 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static	int	monitoring_one(t_point *table)
 {
 	if (table->food == 0)
-			return (1);
+		return (1);
 	if ((check_time(table->time_ut_r)) > table->t_to_die)
 	{
 		table->val.x = 1;
