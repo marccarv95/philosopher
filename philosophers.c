@@ -6,7 +6,7 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:14:44 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 13:23:19 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/15 13:49:19 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	main(int ac, char **av)
 			}
 			sem_close(table.sem_ph);
 			sem_close(table.sem_print);
+			free(table.kill_pid);
 			exit (0);
 		}
 		else if (exit_code == 0)
@@ -51,10 +52,11 @@ int	main(int ac, char **av)
 				printf("Pai: Todos os filhos terminaram de comer\n");
 				sem_close(table.sem_ph);
 				sem_close(table.sem_print);
+				free(table.kill_pid);
 				exit(0);
 			}
 		}
     }
-	free(table.kill_pid);
+	
 	return (0);
 }

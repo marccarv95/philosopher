@@ -6,7 +6,7 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:31:17 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 13:09:24 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:15:35 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static	int	rotine(t_point *table, int i)
 	if (table->val.x == 1)
 	{
 		sem_post(table->sem_ph);
+		sem_close(table->sem_ph);
+		sem_close(table->sem_print);
 		exit (1);
 	}
 	print_philo_stat("has taken a fork", table);
@@ -29,6 +31,8 @@ static	int	rotine(t_point *table, int i)
 	if(sem_wait(table->sem_ph) != 0)
 	{
 		sem_post(table->sem_ph);
+		sem_close(table->sem_ph);
+		sem_close(table->sem_print);
 		i ++;
 		return (1);
 	}
@@ -36,6 +40,8 @@ static	int	rotine(t_point *table, int i)
 	{
 		sem_post(table->sem_ph);
 		sem_post(table->sem_ph);
+		sem_close(table->sem_ph);
+		sem_close(table->sem_print);
 		exit (1);
 	}
 	print_philo_stat("has taken a fork", table);
@@ -51,6 +57,8 @@ static	void	rotine_cont(t_point *table)
 	{
 		sem_post(table->sem_ph);
 		sem_post(table->sem_ph);
+		sem_close(table->sem_ph);
+		sem_close(table->sem_print);
 		exit (1);
 	}
 	sem_post(table->sem_ph);
@@ -60,26 +68,33 @@ static	void	rotine_cont(t_point *table)
 	if (table->food == 0)
 	{
 		usleep(4000);
+		sem_close(table->sem_ph);
+		sem_close(table->sem_print);
 		exit (0);
 	}
 	if (table->val.x == 1)
 	{
 		usleep(1000);
+		sem_close(table->sem_ph);
+		sem_close(table->sem_print);
 		exit (1);
 	}
 	print_philo_stat("is sleeping", table);
 	ft_sleep(table->t_to_sleep);
 	if (table->val.x == 1)
+	{
+		sem_close(table->sem_ph);
+		sem_close(table->sem_print);
 		exit (1);
+	}
 }
 
 void	table_rotina_par(t_point *table)
 {
-	pthread_t		munitor;
 	int				i = 0;
 
-	pthread_create(&munitor, NULL, monitoring, table);
-	pthread_detach(munitor);
+	pthread_create(&table->munitor, NULL, monitoring, table);
+	pthread_detach(table->munitor);
 	while (1)
 	{
 		print_philo_stat("is thinking", table);
@@ -88,6 +103,11 @@ void	table_rotina_par(t_point *table)
 			rotine_cont(table);
 		i = 0;
 		if (table->val.x == 1)
+		{
+			sem_close(table->sem_ph);
+			sem_close(table->sem_print);
 			exit (1);
+		}
 	}
+	return ;
 }

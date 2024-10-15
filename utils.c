@@ -6,7 +6,7 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:49:42 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 13:05:47 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:46:28 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,15 @@ size_t	ft_atol(char *str)
 void	print_philo_stat_m(char *str, t_point *table)
 {
 	sem_wait(table->sem_print);
-	printf("%ld %ld %s\n", get_time_in_ms() - table->time_init, \
+	printf("%09ld %ld %s\n", get_time_in_ms() - table->time_init, \
 	table->pid_philo, str);
+	//sem_post(table->sem_print);
 }
 
 void	print_philo_stat(char *str, t_point *table)
 {
 	sem_wait(table->sem_print);
-	printf("%ld %ld %s\n", get_time_in_ms() - table->time_init, \
+	printf("%09ld %ld %s\n", get_time_in_ms() - table->time_init, \
 	table->pid_philo, str);
 	sem_post(table->sem_print);
 }

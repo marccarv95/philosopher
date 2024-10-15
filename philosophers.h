@@ -6,7 +6,7 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:15:05 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 13:07:08 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:26:29 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_valuer
 
 typedef struct s_point
 {
+	pthread_t		munitor;
 	sem_t			*sem_ph;
 	sem_t			*sem_print;
 	t_valuer		val;

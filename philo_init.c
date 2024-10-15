@@ -6,7 +6,7 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:49:31 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 13:21:22 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/15 14:58:24 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	init_control(t_valuer *control, int ac, char **av, t_point *table)
 	size_t	argv2;
 	size_t	argv3;
 	size_t	argv4;
-	int		i = 1;
 
 	argv1 = ft_atol(av[1]);
 	argv2 = ft_atol(av[2]);
@@ -33,7 +32,7 @@ void	init_control(t_valuer *control, int ac, char **av, t_point *table)
 	if (!table->kill_pid)
 		return;
 	table->sem_ph = sem_open("/philo_semaphore", O_CREAT | O_EXCL, 0644, control->av1);
-	table->sem_print = sem_open("/philo_print", O_CREAT | O_EXCL, 0644, i);
+	table->sem_print = sem_open("/philo_print", O_CREAT | O_EXCL, 0644, 1);
 	sem_unlink("/philo_semaphore");
 	sem_unlink("/philo_print");
 	if (ac == 6)

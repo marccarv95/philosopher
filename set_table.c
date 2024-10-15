@@ -6,7 +6,7 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:52:46 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 12:44:49 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/15 15:10:26 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ void	loop_philo_one(t_point *table, t_valuer control, int i)
 	table->food = control.av5;
 	table->pid = fork();
 	if (table->pid == 0)
+	{
+		free(table->kill_pid);
 		table_rotina_par(table);
+	}
 	else
 		table->kill_pid[i] = table->pid;
 	
@@ -26,16 +29,15 @@ void	loop_philo(t_point *table, t_valuer control)
 {
 	size_t	i;
 	size_t	tempo;
-	size_t	nbr_philo;
 
 	i = 0;
 	control.x = 0;
-	nbr_philo = control.av1;
 	tempo = get_time_in_ms();
-	while (i < nbr_philo)
+	while (i <  control.av1)
 	{
 		table->val = control;
 		table->pid_philo = i + 1;
+		table->n_philo = control.av1;
 		table->t_to_die = control.av2;
 		table->t_to_eat = control.av3;
 		table->t_to_sleep = control.av4;
