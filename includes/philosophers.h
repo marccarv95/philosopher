@@ -6,7 +6,7 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:15:05 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 16:17:31 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/18 09:44:38 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 typedef struct s_valuer
 {
 	_Atomic int		x;
+	_Atomic int		z;
 	size_t			av1;
 	size_t			av2;
 	size_t			av3;
@@ -46,6 +47,7 @@ typedef struct s_point
 	pthread_t		munitor;
 	sem_t			*sem_ph;
 	sem_t			*sem_print;
+	sem_t			*sem;
 	t_valuer		val;
 	pid_t			pid;
 	pid_t			*kill_pid;
@@ -65,7 +67,6 @@ t_point			*table_malloc(size_t nbr_philo);
 pthread_t		*philo_malloc(size_t nbr_philo);
 
 void			print_philo_stat(char *str, t_point *table);
-void			print_philo_stat_m(char *str, t_point *table);
 void			error_exit(const char *str);
 void			loop_philo(t_point *table, t_valuer control);
 void			init_control(t_valuer *control, \
@@ -73,8 +74,6 @@ void			init_control(t_valuer *control, \
 void			ft_sleep(size_t time);
 void			table_rotina_par(t_point *table);
 void			*monitoring(void *arg);
-void			checker_one(t_point *table);
-void			checker_two(t_point *table);
 void			checker_three(t_point *table, int n);
 
 size_t			check_time(size_t time_init);
@@ -84,6 +83,8 @@ size_t			ft_atol(char *str);
 size_t			time_philo(size_t time);
 size_t			get_time_in_ms(void);
 
+int				checker_one(t_point *table);
+int				checker_two(t_point *table);
 int				parse_argv(int ac, char **av);
 int				philo_one(t_point *table);
 

@@ -6,7 +6,7 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:14:44 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 16:22:33 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/18 08:59:04 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int ac, char **av)
 		waitpid(-1, &status, 0);
 		if (WEXITSTATUS(status) == 1)
 			end_process(&table, control);
-		else if (WEXITSTATUS(status) == 0)
+		if (WEXITSTATUS(status) == 0)
 		{
 			j++;
 			if (j == control.av1)

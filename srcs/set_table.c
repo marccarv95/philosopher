@@ -6,7 +6,7 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:52:46 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 16:16:47 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/18 10:04:13 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void	loop_philo_one(t_point *table, t_valuer control, int i)
 	{
 		free(table->kill_pid);
 		table_rotina_par(table);
+		sem_close(table->sem_ph);
+		sem_close(table->sem_print);
+		exit (1);
 	}
 	else
 		table->kill_pid[i] = table->pid;
@@ -32,6 +35,7 @@ void	loop_philo(t_point *table, t_valuer control)
 
 	i = 0;
 	control.x = 0;
+	control.z = 0;
 	tempo = get_time_in_ms();
 	while (i < control.av1)
 	{

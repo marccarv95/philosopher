@@ -6,7 +6,7 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:58:42 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 16:22:40 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/18 10:04:51 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ static	int	monitoring_one(t_point *table)
 		return (1);
 	if ((check_time(table->time_ut_r)) > table->t_to_die)
 	{
+		table->val.z = 1;
+		print_philo_stat("died", table);
 		table->val.x = 1;
-		print_philo_stat_m("died", table);
 		return (1);
 	}
 	if (table->food == 0)

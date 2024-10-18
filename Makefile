@@ -6,12 +6,12 @@
 #    By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/18 14:33:53 by marccarv          #+#    #+#              #
-#    Updated: 2024/10/15 16:18:07 by almanuel         ###   ########.fr        #
+#    Updated: 2024/10/16 13:58:33 by almanuel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo_bonus
-CC = cc
+CC = cc -g
 CFLAGS = -Wall -Wextra -Werror
 SOURCE = 	srcs/philosophers.c \
 			srcs/parsing_argv.c \

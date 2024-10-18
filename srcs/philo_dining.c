@@ -6,16 +6,22 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 12:31:17 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 16:16:28 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/18 10:02:36 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-static	void	rotine(t_point *table)
+static	int	rotine(t_point *table)
 {
+	if ((table->n_philo % 2) != 0)
+	{
+		if ((table->pid_philo % 2) == 0)
+			ft_sleep(50);
+	}
 	sem_wait(table->sem_ph);
-	checker_one(table);
+	if (checker_one(table))
+		return (1);
 	print_philo_stat("has taken a fork", table);
 	if (table->n_philo == 1)
 	{
@@ -23,17 +29,19 @@ static	void	rotine(t_point *table)
 			exit (1);
 	}
 	sem_wait(table->sem_ph);
-	checker_two(table);
+	if (checker_two(table))
+		return (1);
 	print_philo_stat("has taken a fork", table);
-	return ;
+	return (0);
 }
 
-static	void	rotine_cont(t_point *table)
+static	int	rotine_cont(t_point *table)
 {
 	print_philo_stat("is eating", table);
 	table->time_ut_r = get_time_in_ms();
 	ft_sleep(table->t_to_eat);
-	checker_two(table);
+	if (checker_two(table))
+		return (1);
 	sem_post(table->sem_ph);
 	sem_post(table->sem_ph);
 	if (table->food > 0)
@@ -41,16 +49,12 @@ static	void	rotine_cont(t_point *table)
 	if (table->food == 0)
 		checker_three(table, 0);
 	if (table->val.x == 1)
-	{
-		sem_close(table->sem_ph);
-		sem_close(table->sem_print);
-		exit (1);
-	}
+		return (1);
 	print_philo_stat("is sleeping", table);
 	ft_sleep(table->t_to_sleep);
 	if (table->val.x == 1)
-		checker_three(table, 1);
-	return ;
+		return (1);
+	return (0);
 }
 
 void	table_rotina_par(t_point *table)
@@ -60,14 +64,12 @@ void	table_rotina_par(t_point *table)
 	while (1)
 	{
 		print_philo_stat("is thinking", table);
-		rotine(table);
-		rotine_cont(table);
+		if (rotine(table))
+			break ;
+		if (rotine_cont(table))
+			break ;
 		if (table->val.x == 1)
-		{
-			sem_close(table->sem_ph);
-			sem_close(table->sem_print);
-			exit (1);
-		}
+			break ;
 	}
 	return ;
 }

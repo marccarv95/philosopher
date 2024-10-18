@@ -6,7 +6,7 @@
 /*   By: almanuel <almanuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 19:49:42 by marccarv          #+#    #+#             */
-/*   Updated: 2024/10/15 16:20:17 by almanuel         ###   ########.fr       */
+/*   Updated: 2024/10/18 10:05:58 by almanuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,11 @@ size_t	ft_atol(char *str)
 	return (r);
 }
 
-void	print_philo_stat_m(char *str, t_point *table)
-{
-	sem_wait(table->sem_print);
-	printf(BOLD "%09ld %ld %s" RESERT, get_time_in_ms() - table->time_init, \
-	table->pid_philo, str);
-}
-
 void	print_philo_stat(char *str, t_point *table)
 {
 	sem_wait(table->sem_print);
 	printf(BOLD "%09ld %ld %s" RESERT, get_time_in_ms() - table->time_init, \
-	table->pid_philo, str);
-	sem_post(table->sem_print);
+		table->pid_philo, str);
+	if (table->val.z == 0)
+		sem_post(table->sem_print);
 }
